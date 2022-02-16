@@ -18,8 +18,11 @@ class fragment_likes:Fragment() {
     ): View? {
         _binding = FragmentLikesBinding.inflate(inflater,container,false)
 
+        
+
         return binding.root
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

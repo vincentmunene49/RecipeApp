@@ -8,11 +8,11 @@
     <fragment
         android:id="@+id/fragment_home"
         android:name="com.example.recipes.fragment_home"
-        android:label="fragment_home"
+        android:label="Recipes"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/fragment_likes"
         android:name="com.example.recipes.fragment_likes"
-        android:label="fragment_likes"
+        android:label="Favourites"
         tools:layout="@layout/fragment_likes" />
 </navigation>

@@ -1,13 +1,13 @@
 package com.example.recipes
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavHost
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.recipes.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -20,9 +20,6 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        //setting up the recyler view
-
-
 
         //setting up the bottom navigation
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHost
@@ -30,6 +27,18 @@ class MainActivity : AppCompatActivity() {
         appBarConfigurations = AppBarConfiguration(setOf(R.id.fragment_home, R.id.fragment_likes))
         binding.bottomNav.setupWithNavController(navController)
 
+        //setting up actionBar support
 
+        setSupportActionBar(binding.toolBar)
+        setupActionBarWithNavController(navController,appBarConfigurations)
+
+
+
+    }
+    //setting up the menu
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.action_bar_menu, menu)
+
+        return true
     }
 }
