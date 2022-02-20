@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.recipes.databinding.FragmentHomeBinding
 
-class fragment_home : Fragment(), RecyclerAdapter.itemClickedLister {
+class fragment_home : Fragment(), itemClickedListener {
     private var _binding: FragmentHomeBinding? = null
     val binding get() = _binding!!
 

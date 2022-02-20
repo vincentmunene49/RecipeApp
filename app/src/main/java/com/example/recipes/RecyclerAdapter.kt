@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerAdapter(
     val data_list: ArrayList<data_source>,
-    private var listener: itemClickedLister
+    private var listener: itemClickedListener
 ) :
     RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
 
@@ -34,11 +35,11 @@ class RecyclerAdapter(
     override fun getItemCount(): Int = data_list.size
 
     inner class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
-        val liked = view.findViewById<ImageView>(R.id.favourite)
+        val liked = view.findViewById<ImageView>(R.id.delete)
 
         fun setData(data: data_source) {
-            val desc_text = view.findViewById<TextView>(R.id.Desc_txt)
-            val imageView = view.findViewById<ImageView>(R.id.Desc_pic)
+            val desc_text = view.findViewById<TextView>(R.id.Desc_txt_in_like)
+            val imageView = view.findViewById<ImageView>(R.id.Desc_pic_in_like)
 
 
 //set data
@@ -55,13 +56,15 @@ class RecyclerAdapter(
 
 
         override fun onClick(item: View?) {
-            if (item?.id == R.id.favourite) {
+            if (item?.id == R.id.delete) {
                 temp_data_source.getData()[bindingAdapterPosition].favourite =
                     !(temp_data_source.getData()[bindingAdapterPosition].favourite)
                 if(temp_data_source.getData()[bindingAdapterPosition].favourite ){
                     liked.setBackgroundColor(Color.parseColor("#ff0000"))
                 }else{
                     liked.setBackgroundColor(Color.parseColor("#0ff000"))
+                    temp_data_source.likedList.add(temp_data_source.getData()[bindingAdapterPosition])
+                    Toast.makeText(view.context, "added to likes", Toast.LENGTH_SHORT).show()
                 }
 
             } else {
@@ -78,10 +81,7 @@ class RecyclerAdapter(
 
     }
 
-    interface itemClickedLister {
-        fun onItemClicked(position: Int)
 
-    }
 
 
 }

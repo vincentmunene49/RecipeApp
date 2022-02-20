@@ -6,14 +6,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragment_likes">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Likes"
-        android:textAlignment="center"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/likedRecView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/liked_list_items" />
 </androidx.constraintlayout.widget.ConstraintLayout>
