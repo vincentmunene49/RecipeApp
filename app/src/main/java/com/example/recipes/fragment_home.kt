@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.recipes.databinding.FragmentHomeBinding
 
-class fragment_home : Fragment() {
+class fragment_home : Fragment(), RecyclerAdapter.itemClickedLister {
     private var _binding: FragmentHomeBinding? = null
     val binding get() = _binding!!
 
@@ -17,14 +18,14 @@ class fragment_home : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater,container,false)
-
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+//setting up recyler view
         var recycler_view = binding.recView
         recycler_view.layoutManager = GridLayoutManager(this.context, 2)
-        val adapter = RecyclerAdapter(temp_data_source.getData())
+        val adapter = RecyclerAdapter(temp_data_source.getData(), this)
         recycler_view.adapter = adapter
 
-       return binding.root
+        return binding.root
 
 
     }
@@ -35,4 +36,30 @@ class fragment_home : Fragment() {
         _binding = null
     }
 
+    //set up click action
+    override fun onItemClicked(position: Int) {
+        val itemClicked = temp_data_source.getData()[position]
+
+            val image = itemClicked.image
+            val recipe = itemClicked.recipe
+            val action = fragment_homeDirections.actionFragmentHomeToRecipeFragment(image, recipe)
+            findNavController().navigate(action)
+
+
+
+    }
+
+//    private fun setLikes(checked: Boolean) {
+//        var checked = checked
+//        if (checked) {
+//            checked = false
+//
+//        } else {
+//            var favIcon = R.id.favourite
+//
+//        }
+//    }
+
+
 }
+
