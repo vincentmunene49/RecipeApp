@@ -7,13 +7,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.recipes.Interfaces.itemClickedListener
 import com.example.recipes.Pojo.Hit
 import com.example.recipes.R
 
 
 class RecyclerAdapter(
     val data_list: List<Hit>,
-   // private var listener: itemClickedListener
+   private var listener: itemClickedListener
 ) :
     RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
 
@@ -61,7 +62,7 @@ class RecyclerAdapter(
         override fun onClick(item: View?) {
                 val position: Int = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                   // listener.onItemClicked(position)
+                    listener.onItemClicked(position)
 
                 }
 

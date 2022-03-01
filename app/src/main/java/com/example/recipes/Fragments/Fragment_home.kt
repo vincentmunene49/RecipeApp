@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.recipes.Adapters.RecyclerAdapter
 import com.example.recipes.Interfaces.itemClickedListener
+import com.example.recipes.Pojo.Hit
 import com.example.recipes.Pojo.Meal
+import com.example.recipes.Pojo.ObjectHit
 import com.example.recipes.databinding.FragmentHomeBinding
 import com.example.recipes.retrofit.RetrofitInstance
 import com.example.recipes.util.ID
@@ -55,7 +58,8 @@ class fragment_home : Fragment(), itemClickedListener {
                     //setting up recyler view
                     var recycler_view = binding.recView
                     recycler_view.layoutManager = GridLayoutManager(context, 2)
-                    val adapter = RecyclerAdapter(responseMeal.hits)
+                    val adapter = RecyclerAdapter(responseMeal.hits, this@fragment_home)
+                    ObjectHit.hit = responseMeal.hits as ArrayList<Hit>
                     recycler_view.adapter = adapter
                 }
 
@@ -84,12 +88,12 @@ class fragment_home : Fragment(), itemClickedListener {
 
     //set up click action
     override fun onItemClicked(position: Int) {
-//        val itemClicked = temp_data_source.getData()[position]
-//
-//            val image = itemClicked.image
-//            val recipe = itemClicked.recipe
-//            val action = fragment_homeDirections.actionFragmentHomeToRecipeFragment(image, recipe)
-//            findNavController().navigate(action)
+        var viewClicked = ObjectHit.hit[position]
+
+           val image = viewClicked.recipe.image
+            val recipe = viewClicked.recipe.ingredients[position].food
+            val action = fragment_homeDirections.actionFragmentHomeToRecipeFragment( recipe,image)
+            findNavController().navigate(action)
 
 
     }
