@@ -15,7 +15,7 @@
 
         <ImageView
             android:id="@+id/Desc_pic_in_like"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"

@@ -12,7 +12,7 @@
     android:layout_height="match_parent"
     app:layout_constraintBottom_toBottomOf="parent"
     android:fillViewport="true"
-    tools:context=".recipe_fragment">
+    tools:context=".Fragments.recipe_fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
