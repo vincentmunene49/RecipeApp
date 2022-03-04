@@ -14,7 +14,7 @@ import com.example.recipes.R
 
 class RecyclerAdapter(
     val data_list: List<Hit>,
-   private var listener: itemClickedListener
+    private var listener: itemClickedListener
 ) :
     RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
 
@@ -47,7 +47,7 @@ class RecyclerAdapter(
 
 //set data
             desc_text.text = data.recipe.label
-            Glide.with(view.context).load(data.recipe.image).override(400,200).into(imageView)
+            Glide.with(view.context).load(data.recipe.image).override(400, 200).into(imageView)
 
         }
 
@@ -60,20 +60,17 @@ class RecyclerAdapter(
 
 
         override fun onClick(item: View?) {
-                val position: Int = bindingAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    listener.onItemClicked(position)
+            val position: Int = bindingAdapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClicked(position)
 
-                }
-
+            }
 
 
         }
 
 
     }
-
-
 
 
 }

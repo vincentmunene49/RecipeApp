@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id "androidx.navigation.safeargs.kotlin"
 
+
 }
 
 android {
@@ -39,7 +40,7 @@ android {
 
 dependencies {
 
-
+    def lifecycle_version = "2.4.0-rc01"
     //implementation "org.jetbrains.kotlin:kotlin-stdlib:2.4.1"
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
@@ -49,6 +50,15 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.4.1")
     implementation("androidx.navigation:navigation-ui-ktx:2.4.1")
     implementation("androidx.navigation:navigation-dynamic-features-fragment:2.4.1")
+    //viewmodel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation 'androidx.fragment:fragment-ktx:1.4.1'
+    //collapsing toolbar
+    implementation 'com.google.android.material:material:1.6.0-alpha03'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    //swipe down to refresh
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'

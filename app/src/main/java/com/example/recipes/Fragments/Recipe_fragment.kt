@@ -24,7 +24,8 @@ class recipe_fragment:Fragment() {
         binding.apply {
             Glide.with(this@recipe_fragment).load(args.image).into(foodImage)
            // foodImage.setImageResource(args.image)
-            recipeView.text = args.recipe
+            collapsingToolBar.title = args.recipe
+
         }
 
         return binding.root

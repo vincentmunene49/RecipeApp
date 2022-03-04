@@ -13,8 +13,7 @@
         <action
             android:id="@+id/action_fragment_home_to_recipe_fragment"
             app:destination="@id/recipe_fragment"
-            app:popUpTo="@id/fragment_home"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/fragment_likes"
@@ -24,8 +23,7 @@
         <action
             android:id="@+id/action_fragment_likes_to_recipe_fragment"
             app:destination="@id/recipe_fragment"
-            app:popUpTo="@id/fragment_likes"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/recipe_fragment"
