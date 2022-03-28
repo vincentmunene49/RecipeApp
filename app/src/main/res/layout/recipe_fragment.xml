@@ -15,8 +15,8 @@
             android:id="@+id/collapsing_tool_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentScrim="@color/design_default_color_primary_dark"
-            app:layout_scrollFlags="scroll|snap|enterAlways"
+            app:contentScrim="@color/teal_200"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:title="food"
             >
 
@@ -30,26 +30,29 @@
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
 
                 />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ingredients"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                 />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-<androidx.core.widget.NestedScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    >
 
-    <TextView
-        android:id="@+id/desc"
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/recipeRecView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10px"
-        android:text="@string/lorem"
-        />
-</androidx.core.widget.NestedScrollView>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/ingredients" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

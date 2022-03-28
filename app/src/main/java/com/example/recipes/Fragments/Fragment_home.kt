@@ -87,7 +87,12 @@ class fragment_home : Fragment(), itemClickedListener {
         var viewClicked = ObjectHit.hit[position]
         val image = viewClicked.recipe.image
         val recipe = viewClicked.recipe.label
-        val action = fragment_homeDirections.actionFragmentHomeToRecipeFragment(recipe, image)
+        val ingredients = viewClicked.recipe.ingredients.toTypedArray()
+
+
+
+        val action = fragment_homeDirections.actionFragmentHomeToRecipeFragment(recipe, image,ingredients)
+
         findNavController().navigate(action)
 
 

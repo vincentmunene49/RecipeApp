@@ -1,5 +1,9 @@
 package com.example.recipes.Pojo
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Ingredient(
     val food: String,
     val foodCategory: String,
@@ -9,4 +13,4 @@ data class Ingredient(
     val quantity: Double,
     val text: String,
     val weight: Double
-)
+): Parcelable

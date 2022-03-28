@@ -36,5 +36,8 @@
         <argument
             android:name="image"
             app:argType="string" />
+        <argument
+            android:name="ingredients"
+            app:argType="com.example.recipes.Pojo.Ingredient[]" />
     </fragment>
 </navigation>

@@ -18,6 +18,7 @@ class fragment_likes:Fragment(), itemClickedListener {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentLikesBinding.inflate(inflater,container,false)
+        setHasOptionsMenu(false)
 
         //set adapter and view
 //        val adapter = RecylerAdapterLikedList(temp_data_source.likedList,this)
