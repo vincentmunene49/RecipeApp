@@ -1,7 +1,6 @@
 package com.example.recipes.Activities
 
 import android.os.Bundle
-import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavHost
@@ -38,11 +37,6 @@ class MainActivity : AppCompatActivity() {
 
     }
     //setting up the menu
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.action_bar_menu, menu)
-
-        return true
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()

@@ -31,12 +31,12 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:text="Pizza"
-            app:layout_constraintEnd_toStartOf="@+id/delete"
+            app:layout_constraintEnd_toStartOf="@+id/likes"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Desc_pic_in_like" />
 
         <ImageView
-            android:id="@+id/delete"
+            android:id="@+id/likes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"

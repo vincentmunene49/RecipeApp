@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/search_background.xml" value="0.135" />
+        <entry key="app/src/main/res/drawable/search_view_background.xml" value="0.135" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/layout/fragment_likes.xml" value="0.17708333333333334" />

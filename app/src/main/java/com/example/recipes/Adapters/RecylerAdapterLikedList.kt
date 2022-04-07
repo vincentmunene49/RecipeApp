@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.recipes.Interfaces.itemClickedListener
-import com.example.recipes.Pojo.Meal
-
 import com.example.recipes.R
+import com.example.recipes.RoomDb.Recipe
 
 class RecylerAdapterLikedList(
-    val data_items:ArrayList<Meal>,
     val listener: itemClickedListener
 ):RecyclerView.Adapter<RecylerAdapterLikedList.myViewHolder>(){
+    private var recipe_list = emptyList<Recipe>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myViewHolder {
@@ -23,33 +23,38 @@ class RecylerAdapterLikedList(
     }
 
     override fun onBindViewHolder(holder: myViewHolder, position: Int) {
-        val currentItem = data_items[position]
+        val currentItem = recipe_list[position]
         holder.setData(currentItem)
     }
 
-    override fun getItemCount() = data_items.size
+    override fun getItemCount() = recipe_list.size
 
     inner class myViewHolder(val view: View): RecyclerView.ViewHolder(view){
 
-        fun setData(data: Meal){
+        fun setData(data: Recipe){
             val desc_image = view.findViewById<ImageView>(R.id.Desc_pic_in_like)
             val desc_text = view.findViewById<TextView>(R.id.Desc_txt_in_like)
 
-
-          //  desc_image.setImageDrawable(view.context.getDrawable(data.image))
-            //desc_text.text = data.description
+            desc_text.text = data.lable
+            Glide.with(view.context).load(data.image).override(400, 200).into(desc_image)
         }
 
         init {
             view.setOnClickListener{
                 val position: Int = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.onItemClicked(position)
+                    listener.onViewClicked(position)
 
                 }
             }
         }
 
+    }
+
+    //set the list
+    fun setData(recipe:List<Recipe>){
+        this.recipe_list = recipe
+        notifyDataSetChanged()
     }
 
 

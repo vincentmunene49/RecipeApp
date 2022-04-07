@@ -31,9 +31,6 @@
         android:label="Recipe"
         tools:layout="@layout/recipe_fragment" >
         <argument
-            android:name="recipe"
-            app:argType="string" />
-        <argument
             android:name="image"
             app:argType="string" />
         <argument

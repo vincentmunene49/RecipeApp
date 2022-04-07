@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             app:contentScrim="@color/teal_200"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:title="food"
+            app:title="Ingredients"
+            android:textAlignment="center"
             >
 
             <ImageView
@@ -33,14 +34,6 @@
                 app:layout_collapseMode="pin"
 
                 />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ingredients"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                 />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>

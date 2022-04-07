@@ -6,6 +6,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Fragments.fragment_home">
 
+    <SearchView
+        android:id="@+id/search"
+        android:layout_width="0dp"
+        android:background="@drawable/search_background"
+        android:queryBackground="@android:color/transparent"
+        android:iconifiedByDefault="false"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:queryHint="Search Recipe"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swiperefresh"
         android:layout_width="match_parent"
@@ -13,7 +28,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/search">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recView"

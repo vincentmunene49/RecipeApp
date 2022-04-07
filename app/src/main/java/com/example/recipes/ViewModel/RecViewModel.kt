@@ -1,34 +1,40 @@
 package com.example.recipes.ViewModel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.*
 import com.example.recipes.Pojo.Hit
 import com.example.recipes.Pojo.Meal
 import com.example.recipes.Pojo.ScreenStates
-import com.example.recipes.util.*
+import com.example.recipes.RoomDb.Recipe
+import com.example.recipes.RoomDb.Recipe_database
+import com.example.recipes.util.ID
+import com.example.recipes.util.KEY
+import com.example.recipes.util.RANDOM
+import com.example.recipes.util.TYPE
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class RecViewModel(
-    private val repository: RetRepository
+    private val repository: RetRepository,
 ) : ViewModel() {
 
 
     private var _meals = MutableLiveData<ScreenStates <List<Hit>?>>()
      val meals: LiveData<ScreenStates<List<Hit>?>>
         get() = _meals
-
+    var meal = "chicken"
     init {
 
-            getMeals()
+            getMeals(meal)
 
 
     }
 
-    fun getMeals() {
-        val response = repository.getMeals(KEY, ID, VALUE, TYPE, RANDOM)
+    fun getMeals(meal:String) {
+        val response = repository.getMeals(KEY, ID, meal, TYPE, RANDOM)
         _meals.postValue(ScreenStates.Loading(null))
         response.enqueue(object : Callback<Meal> {
             override fun onResponse(call: Call<Meal>, response: Response<Meal>) {
@@ -51,9 +57,30 @@ class RecViewModel(
     }
 
     fun onRefresh(){
-        getMeals()
+        getMeals(meal)
     }
 
 
+
 }
+
+class dbRecViewModel(application:Application):AndroidViewModel(application){
+     val readRecipe:LiveData<List<Recipe>>
+    private val repository:RecipeDatabaseRepository
+
+    init {
+        val recipe_dao = Recipe_database.getDatabase(application).RecipeDao()
+        repository =  RecipeDatabaseRepository(recipe_dao)
+            readRecipe = repository.readRecipe
+    }
+
+
+    fun insertRecipe(recipe:Recipe){
+        viewModelScope.launch (Dispatchers.IO){
+            repository.insertRecipe(recipe)
+        }
+    }
+
+}
+
 

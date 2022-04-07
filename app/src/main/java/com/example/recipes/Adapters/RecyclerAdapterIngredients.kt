@@ -40,11 +40,11 @@ class RecyclerAdapterIngredients(
             val measure = view.findViewById<TextView>(R.id.measure)
             val text = view.findViewById<TextView>(R.id.test)
 
-            name.text = ingredient.food
-            quantity.text = ingredient.quantity.toString()
-            category.text = ingredient.foodCategory
-            measure.text = ingredient.measure
-            text.text = ingredient.text
+            name.text = "Name: " + ingredient.food
+            quantity.text = "Quanity: " + ingredient.quantity.toString()
+            category.text ="Category: " +  ingredient.foodCategory
+            measure.text = "Measure: " + ingredient.measure
+            text.text = "Description: " + ingredient.text
 
             Glide.with(view.context).
                     load(ingredient.image).
