@@ -38,7 +38,6 @@ class RecyclerAdapter(
     override fun getItemCount(): Int = data_list.size
 
     inner class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
-        val liked = view.findViewById<ImageView>(R.id.likes)
 
         fun setData(data: Hit) {
             val desc_text = view.findViewById<TextView>(R.id.Desc_txt_in_like)
@@ -55,18 +54,15 @@ class RecyclerAdapter(
 
         init {
             view.setOnClickListener(this)
-            liked.setOnClickListener(this)
 
         }
 
 
         override fun onClick(item: View?) {
             val position: Int = bindingAdapterPosition
-            if (position != RecyclerView.NO_POSITION && item?.id!=R.id.likes) {
+            if (position != RecyclerView.NO_POSITION) {
                 listener.onViewClicked(position)
 
-            }else{
-                listener.onItemCLicked(position)
             }
 
 
@@ -75,9 +71,7 @@ class RecyclerAdapter(
 
     }
 
-    fun changeButtonOnClick(){
 
-    }
 
 
 }

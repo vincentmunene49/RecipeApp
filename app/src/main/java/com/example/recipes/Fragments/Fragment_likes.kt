@@ -59,7 +59,5 @@ class fragment_likes : Fragment(), itemClickedListener {
         TODO("Not yet implemented")
     }
 
-    override fun onItemCLicked(position: Int) {
-        TODO("Not yet implemented")
-    }
+
 }

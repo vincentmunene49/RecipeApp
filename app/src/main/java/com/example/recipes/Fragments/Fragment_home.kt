@@ -1,23 +1,16 @@
 package com.example.recipes.Fragments
 
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import coil.ImageLoader
-import coil.request.ImageRequest
-import coil.request.SuccessResult
 import com.example.recipes.Adapters.RecyclerAdapter
 import com.example.recipes.Interfaces.itemClickedListener
 import com.example.recipes.Pojo.Hit
@@ -26,11 +19,9 @@ import com.example.recipes.Pojo.ScreenStates
 import com.example.recipes.ViewModel.RecViewModel
 import com.example.recipes.ViewModel.RecViewModelFactory
 import com.example.recipes.ViewModel.RetRepository
-import com.example.recipes.ViewModel.dbRecViewModel
 import com.example.recipes.databinding.FragmentHomeBinding
 import com.example.recipes.retrofit.RetrofitInstance
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.launch
 
 class fragment_home : Fragment(), itemClickedListener {
     //retrofit view Model
@@ -40,8 +31,7 @@ class fragment_home : Fragment(), itemClickedListener {
         )
     }
 
-    //database viewModel
-    private lateinit var _dViewModel: dbRecViewModel
+
 
     private var _binding: FragmentHomeBinding? = null
     val binding get() = _binding!!
@@ -62,8 +52,6 @@ class fragment_home : Fragment(), itemClickedListener {
             _mViewModel.onRefresh()
             binding.swiperefresh.isRefreshing = false
         }
-//database view model
-        _dViewModel = ViewModelProvider(this).get(dbRecViewModel::class.java)
 
         return binding.root
 
@@ -132,55 +120,15 @@ class fragment_home : Fragment(), itemClickedListener {
         val ingredients = viewClicked.recipe.ingredients.toTypedArray()
 
 
-        val action = fragment_homeDirections.actionFragmentHomeToRecipeFragment(image, ingredients)
+        val action = fragment_homeDirections.actionFragmentHomeToRecipeFragment(image, ingredients,position)
 
         findNavController().navigate(action)
 
 
     }
 
-    //convert image to bitmap
-    private suspend fun getBitmap(imageUrl: String): Bitmap {
-        val loading = ImageLoader(requireContext())
-        val request = ImageRequest.Builder(requireContext())
-            .data(imageUrl)
-            .build()
-
-        val result = (loading.execute(request) as SuccessResult).drawable
-
-        return (result as BitmapDrawable).bitmap
-
-    }
-
-    override fun onItemCLicked(position: Int) {
-        var viewClicked = ObjectHit.hit[position]
-
-        lifecycleScope.launch {
-            val recipe = com.example.recipes.RoomDb.Recipe(
-                0,
-                viewClicked.recipe.label,
-                getBitmap(viewClicked.recipe.image),
-                viewClicked.recipe.ingredients
-            )
-
-            _dViewModel.insertRecipe(recipe)
-        }
-
-        Toast.makeText(context, "liked recipe at $position", Toast.LENGTH_SHORT).show()
-    }
 
 
-
-//    private fun setLikes(checked: Boolean) {
-//        var checked = checked
-//        if (checked) {
-//            checked = false
-//
-//        } else {
-//            var favIcon = R.id.favourite
-//
-//        }
-//    }
 
     override fun onResume() {
         super.onResume()
