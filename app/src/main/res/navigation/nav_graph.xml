@@ -21,9 +21,8 @@
         android:label="Favourites"
         tools:layout="@layout/fragment_likes" >
         <action
-            android:id="@+id/action_fragment_likes_to_recipe_fragment"
-            app:destination="@id/recipe_fragment"
-            app:popUpToInclusive="false" />
+            android:id="@+id/action_fragment_likes_to_offline_Recipe_Fragment"
+            app:destination="@id/offline_Recipe_Fragment" />
     </fragment>
     <fragment
         android:id="@+id/recipe_fragment"
@@ -39,5 +38,16 @@
         <argument
             android:name="position"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/offline_Recipe_Fragment"
+        android:name="com.example.recipes.Fragments.Offline_Recipe_Fragment"
+        android:label="Ingredients">
+        <argument
+            android:name="recipe"
+            app:argType="com.example.recipes.RoomDb.Recipe" />
+        <action
+            android:id="@+id/action_offline_Recipe_Fragment_to_fragment_likes"
+            app:destination="@id/fragment_likes" />
     </fragment>
 </navigation>

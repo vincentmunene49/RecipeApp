@@ -13,4 +13,8 @@ class RecipeDatabaseRepository(val db_dao:RecipeDao){
     val readRecipe:LiveData<List<Recipe>> = db_dao.readRecipe()
 
     suspend fun insertRecipe(recipe: Recipe) = db_dao.insertRecipe(recipe)
+
+    suspend fun deleteRecipe(recipe: Recipe) = db_dao.deleteRecipe(recipe)
+    suspend fun deleteAllReipes() = db_dao.deleteAllRecipes()
+
 }

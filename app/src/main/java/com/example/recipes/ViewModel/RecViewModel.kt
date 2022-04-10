@@ -67,11 +67,19 @@ class RecViewModel(
 class dbRecViewModel(application:Application):AndroidViewModel(application){
      val readRecipe:LiveData<List<Recipe>>
     private val repository:RecipeDatabaseRepository
+    //checker
+    private var _checker = MutableLiveData<Boolean>(false)
+    val checker: LiveData<Boolean>
+        get() = _checker
+
 
     init {
         val recipe_dao = Recipe_database.getDatabase(application).RecipeDao()
         repository =  RecipeDatabaseRepository(recipe_dao)
             readRecipe = repository.readRecipe
+
+
+
     }
 
 
@@ -79,6 +87,25 @@ class dbRecViewModel(application:Application):AndroidViewModel(application){
         viewModelScope.launch (Dispatchers.IO){
             repository.insertRecipe(recipe)
         }
+    }
+
+    fun deleteRecipe(recipe: Recipe){
+
+        viewModelScope.launch (Dispatchers.IO){
+            repository.deleteRecipe(recipe)
+        }
+    }
+    fun deleteALlRecipe(){
+        viewModelScope.launch (Dispatchers.IO){
+            repository.deleteAllReipes()
+        }
+    }
+
+    fun checkcer():Boolean{
+
+       _checker.value = true
+
+        return _checker.value!!
     }
 
 }

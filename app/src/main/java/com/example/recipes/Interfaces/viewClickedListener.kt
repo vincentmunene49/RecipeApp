@@ -1,6 +1,6 @@
 package com.example.recipes.Interfaces
 
-interface itemClickedListener {
+interface viewClickedListener {
     fun onViewClicked(position: Int)
 
 }

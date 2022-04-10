@@ -5,14 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.recipes.Adapters.RecyclerAdapter
-import com.example.recipes.Interfaces.itemClickedListener
+import com.example.recipes.Interfaces.viewClickedListener
 import com.example.recipes.Pojo.Hit
 import com.example.recipes.Pojo.ObjectHit
 import com.example.recipes.Pojo.ScreenStates
@@ -23,7 +22,7 @@ import com.example.recipes.databinding.FragmentHomeBinding
 import com.example.recipes.retrofit.RetrofitInstance
 import com.google.android.material.snackbar.Snackbar
 
-class fragment_home : Fragment(), itemClickedListener {
+class fragment_home : Fragment(), viewClickedListener {
     //retrofit view Model
     private val _mViewModel: RecViewModel by lazy {
         ViewModelProvider(this, RecViewModelFactory(RetRepository(RetrofitInstance.api))).get(
@@ -130,14 +129,14 @@ class fragment_home : Fragment(), itemClickedListener {
 
 
 
-    override fun onResume() {
-        super.onResume()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+//    }
+//
+//    override fun onStop() {
+//        super.onStop()
+//        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+//    }
 }
 

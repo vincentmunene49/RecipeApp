@@ -7,12 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.recipes.Interfaces.itemClickedListener
+import com.example.recipes.Interfaces.viewClickedListener
 import com.example.recipes.R
 import com.example.recipes.RoomDb.Recipe
 
 class RecylerAdapterLikedList(
-    val listener: itemClickedListener
+    val listener: viewClickedListener,
 ):RecyclerView.Adapter<RecylerAdapterLikedList.myViewHolder>(){
     private var recipe_list = emptyList<Recipe>()
 
@@ -30,7 +30,6 @@ class RecylerAdapterLikedList(
     override fun getItemCount() = recipe_list.size
 
     inner class myViewHolder(val view: View): RecyclerView.ViewHolder(view){
-
         fun setData(data: Recipe){
             val desc_image = view.findViewById<ImageView>(R.id.Desc_pic_in_like)
             val desc_text = view.findViewById<TextView>(R.id.Desc_txt_in_like)
@@ -47,6 +46,7 @@ class RecylerAdapterLikedList(
 
                 }
             }
+
         }
 
     }
@@ -56,6 +56,9 @@ class RecylerAdapterLikedList(
         this.recipe_list = recipe
         notifyDataSetChanged()
     }
-
+//return currentItem
+    fun getRecipe(position: Int):Recipe{
+        return recipe_list[position]
+    }
 
 }

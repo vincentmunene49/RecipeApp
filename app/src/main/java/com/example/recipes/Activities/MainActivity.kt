@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavHost
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.recipes.R
 import com.example.recipes.databinding.ActivityMainBinding
@@ -19,8 +18,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-
-
         //setting up the bottom navigation
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHost
         navController = navHost.navController
@@ -28,17 +25,10 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setupWithNavController(navController)
         appBarConfigurations = AppBarConfiguration(setOf(R.id.fragment_home, R.id.fragment_likes))
         //setting up actionBar support
-
-        setSupportActionBar(binding.toolBar)
-        setupActionBarWithNavController(navController,appBarConfigurations)
+     //   setupActionBarWithNavController(navController,appBarConfigurations)
 
 
 
 
-    }
-    //setting up the menu
-
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

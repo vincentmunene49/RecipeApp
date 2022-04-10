@@ -7,14 +7,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.recipes.Interfaces.itemClickedListener
+import com.example.recipes.Interfaces.viewClickedListener
 import com.example.recipes.Pojo.Hit
 import com.example.recipes.R
 
 
 class RecyclerAdapter(
     val data_list: List<Hit>,
-    private var listener: itemClickedListener
+    private var listener: viewClickedListener
 ) :
     RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
 
