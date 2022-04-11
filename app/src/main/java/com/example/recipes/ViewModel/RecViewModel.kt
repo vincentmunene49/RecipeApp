@@ -68,7 +68,7 @@ class dbRecViewModel(application:Application):AndroidViewModel(application){
      val readRecipe:LiveData<List<Recipe>>
     private val repository:RecipeDatabaseRepository
     //checker
-    private var _checker = MutableLiveData<Boolean>(false)
+    private var _checker = MutableLiveData<Boolean>()
     val checker: LiveData<Boolean>
         get() = _checker
 

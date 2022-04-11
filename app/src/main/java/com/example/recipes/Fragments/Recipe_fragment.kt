@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import coil.ImageLoader
@@ -99,6 +100,12 @@ class recipe_fragment : Fragment() {
                 Toast.makeText(context, "Recipe added to favourites", Toast.LENGTH_SHORT).show()
             }
 
+        }
+
+        binding.viewRecipe.setOnClickListener{
+           val source =  args.source
+            val action = recipe_fragmentDirections.actionRecipeFragmentToWebViewFragment(source)
+            findNavController().navigate(action)
         }
 
         return binding.root

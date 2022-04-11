@@ -117,9 +117,10 @@ class fragment_home : Fragment(), viewClickedListener {
         val image = viewClicked.recipe.image
         //val recipe = viewClicked.recipe.label
         val ingredients = viewClicked.recipe.ingredients.toTypedArray()
+        val source = viewClicked.recipe.url
 
 
-        val action = fragment_homeDirections.actionFragmentHomeToRecipeFragment(image, ingredients,position)
+        val action = fragment_homeDirections.actionFragmentHomeToRecipeFragment(image, ingredients,position,source)
 
         findNavController().navigate(action)
 

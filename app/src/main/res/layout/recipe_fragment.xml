@@ -8,6 +8,7 @@
     android:fitsSystemWindows="true"
     tools:context=".Fragments.recipe_fragment">
 
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:id="@+id/appbar"
@@ -60,6 +61,18 @@
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|end|right"
         android:layout_marginRight="20dp"/>
+    <Button
+        android:id="@+id/view_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Recipe Details"
+        android:backgroundTint="@color/teal_200"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_anchor="@id/recipeRecView"
+        app:layout_anchorGravity="bottom|center"/>
+
+
 
 
 
