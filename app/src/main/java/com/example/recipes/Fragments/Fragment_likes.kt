@@ -47,6 +47,8 @@ class fragment_likes : Fragment(),viewClickedListener {
         val toolBar = binding.toolbar
         (activity as AppCompatActivity?)!!.setSupportActionBar(toolBar)
         (activity as AppCompatActivity).supportActionBar?.title = "Favourites"
+
+
         return binding.root
     }
 

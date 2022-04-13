@@ -112,7 +112,7 @@ class recipe_fragment : Fragment() {
     }
 
     //convert image to bitmap
-    private suspend fun getBitmap(imageUrl: String): Bitmap {
+   private suspend fun getBitmap(imageUrl: String): Bitmap {
         val loading = ImageLoader(requireContext())
         val request = ImageRequest.Builder(requireContext())
             .data(imageUrl)
@@ -125,15 +125,7 @@ class recipe_fragment : Fragment() {
     }
 
 
-//    override fun onResume() {
-//        super.onResume()
-//        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
-//    }
-//
-//    override fun onStop() {
-//        super.onStop()
-//        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
-//    }
+
 
 
 

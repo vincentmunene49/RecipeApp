@@ -1,72 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragment_home">
+    app:startDestination="@+id/home_navigation"
+    >
 
-    <fragment
-        android:id="@+id/fragment_home"
-        android:name="com.example.recipes.Fragments.fragment_home"
-        android:label="Recipes"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_fragment_home_to_recipe_fragment"
-            app:destination="@id/recipe_fragment"
-            app:popUpTo="@id/fragment_home"
-            app:popUpToInclusive="false" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragment_likes"
-        android:name="com.example.recipes.Fragments.fragment_likes"
-        android:label="Favourites"
-        tools:layout="@layout/fragment_likes" >
-        <action
-            android:id="@+id/action_fragment_likes_to_offline_Recipe_Fragment"
-            app:destination="@id/offline_Recipe_Fragment"
-            app:popUpToInclusive="false" />
-    </fragment>
-    <fragment
-        android:id="@+id/recipe_fragment"
-        android:name="com.example.recipes.Fragments.recipe_fragment"
-        android:label="Recipe"
-        tools:layout="@layout/recipe_fragment" >
-        <argument
-            android:name="image"
-            app:argType="string" />
-        <argument
-            android:name="ingredients"
-            app:argType="com.example.recipes.Pojo.Ingredient[]" />
-        <argument
-            android:name="position"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_recipe_fragment_to_webViewFragment"
-            app:destination="@id/webViewFragment" />
-        <argument
-            android:name="source"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/offline_Recipe_Fragment"
-        android:name="com.example.recipes.Fragments.Offline_Recipe_Fragment"
-        android:label="Ingredients">
-        <argument
-            android:name="recipe"
-            app:argType="com.example.recipes.RoomDb.Recipe" />
-        <action
-            android:id="@+id/action_offline_Recipe_Fragment_to_fragment_likes"
-            app:destination="@id/fragment_likes"
-            app:popUpTo="@id/fragment_likes"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/webViewFragment"
-        android:name="com.example.recipes.Fragments.WebViewFragment"
-        android:label="web_view_fragment"
-        tools:layout="@layout/web_view_fragment" >
-        <argument
-            android:name="source"
-            app:argType="string" />
-    </fragment>
+
+    <include app:graph="@navigation/home_navigation" />
+    <include app:graph="@navigation/likes_navigation" />
 </navigation>

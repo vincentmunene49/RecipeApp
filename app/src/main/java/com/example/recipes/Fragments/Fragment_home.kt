@@ -31,7 +31,6 @@ class fragment_home : Fragment(), viewClickedListener {
     }
 
 
-
     private var _binding: FragmentHomeBinding? = null
     val binding get() = _binding!!
 
@@ -120,7 +119,12 @@ class fragment_home : Fragment(), viewClickedListener {
         val source = viewClicked.recipe.url
 
 
-        val action = fragment_homeDirections.actionFragmentHomeToRecipeFragment(image, ingredients,position,source)
+        val action = fragment_homeDirections.actionFragmentHomeToRecipeFragment(
+            image,
+            ingredients,
+            position,
+            source
+        )
 
         findNavController().navigate(action)
 
@@ -128,16 +132,5 @@ class fragment_home : Fragment(), viewClickedListener {
     }
 
 
-
-
-//    override fun onResume() {
-//        super.onResume()
-//        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
-//    }
-//
-//    override fun onStop() {
-//        super.onStop()
-//        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
-//    }
 }
 

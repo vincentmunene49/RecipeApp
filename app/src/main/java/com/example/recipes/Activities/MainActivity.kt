@@ -13,21 +13,22 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfigurations: AppBarConfiguration
     lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        //set default Theme
 
         setContentView(binding.root)
-        //setting up the bottom navigation
+
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHost
         navController = navHost.navController
 
+        //setting up the bottom navigation
         binding.bottomNav.setupWithNavController(navController)
         appBarConfigurations = AppBarConfiguration(setOf(R.id.fragment_home, R.id.fragment_likes))
         //setting up actionBar support
-     //   setupActionBarWithNavController(navController,appBarConfigurations)
-
-
+        //   setupActionBarWithNavController(navController,appBarConfigurations)
 
 
     }

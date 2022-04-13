@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/fragment_home">
+
+    <fragment
+        android:id="@+id/fragment_home"
+        android:name="com.example.recipes.Fragments.fragment_home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_fragment_home_to_recipe_fragment"
+            app:destination="@id/recipe_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipe_fragment"
+        android:name="com.example.recipes.Fragments.recipe_fragment"
+        android:label="Recipe"
+        tools:layout="@layout/recipe_fragment" >
+        <argument
+            android:name="image"
+            app:argType="string" />
+        <argument
+            android:name="ingredients"
+            app:argType="com.example.recipes.Pojo.Ingredient[]" />
+        <argument
+            android:name="position"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_recipe_fragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
+        <argument
+            android:name="source"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.example.recipes.Fragments.WebViewFragment"
+        android:label="web_view_fragment"
+        tools:layout="@layout/web_view_fragment" >
+        <argument
+            android:name="source"
+            app:argType="string" />
+    </fragment>
+
+</navigation>

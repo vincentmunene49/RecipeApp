@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/likes_navigation"
+    app:startDestination="@id/fragment_likes">
+
+    <fragment
+        android:id="@+id/fragment_likes"
+        android:name="com.example.recipes.Fragments.fragment_likes"
+        android:label="Favourites"
+        tools:layout="@layout/fragment_likes" >
+        <action
+            android:id="@+id/action_fragment_likes_to_offline_Recipe_Fragment"
+            app:destination="@id/offline_Recipe_Fragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/offline_Recipe_Fragment"
+        android:name="com.example.recipes.Fragments.Offline_Recipe_Fragment"
+        android:label="Ingredients">
+        <argument
+            android:name="recipe"
+            app:argType="com.example.recipes.RoomDb.Recipe" />
+        <action
+            android:id="@+id/action_offline_Recipe_Fragment_to_fragment_likes"
+            app:destination="@id/fragment_likes"
+            app:popUpTo="@id/fragment_likes"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+</navigation>
