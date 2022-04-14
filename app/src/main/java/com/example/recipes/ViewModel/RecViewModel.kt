@@ -1,6 +1,7 @@
 package com.example.recipes.ViewModel
 
 import android.app.Application
+import android.database.Cursor
 import androidx.lifecycle.*
 import com.example.recipes.Pojo.Hit
 import com.example.recipes.Pojo.Meal
@@ -12,6 +13,7 @@ import com.example.recipes.util.KEY
 import com.example.recipes.util.RANDOM
 import com.example.recipes.util.TYPE
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,18 +24,20 @@ class RecViewModel(
 ) : ViewModel() {
 
 
-    private var _meals = MutableLiveData<ScreenStates <List<Hit>?>>()
-     val meals: LiveData<ScreenStates<List<Hit>?>>
+    private var _meals = MutableLiveData<ScreenStates<List<Hit>?>>()
+    val meals: LiveData<ScreenStates<List<Hit>?>>
         get() = _meals
     var meal = "chicken"
+
     init {
 
-            getMeals(meal)
+        getMeals(meal)
 
 
     }
 
-    fun getMeals(meal:String) {
+    fun getMeals(meal: String) {
+
         val response = repository.getMeals(KEY, ID, meal, TYPE, RANDOM)
         _meals.postValue(ScreenStates.Loading(null))
         response.enqueue(object : Callback<Meal> {
@@ -41,14 +45,14 @@ class RecViewModel(
                 if (response.isSuccessful) {
                     _meals.postValue(ScreenStates.Success(response.body()?.hits))
 
-                }else{
-                    _meals.postValue(ScreenStates.Error(response.code().toString(),null))
+                } else {
+                    _meals.postValue(ScreenStates.Error(response.code().toString(), null))
                 }
             }
 
             override fun onFailure(call: Call<Meal>, t: Throwable) {
-                _meals.postValue(ScreenStates.Error(t.message.toString(),null))
-              //  Log.d("dennis", "onFailure: ${t.message}")
+                _meals.postValue(ScreenStates.Error(t.message.toString(), null))
+                //  Log.d("dennis", "onFailure: ${t.message}")
             }
 
         })
@@ -56,17 +60,17 @@ class RecViewModel(
 
     }
 
-    fun onRefresh(){
+    fun onRefresh() {
         getMeals(meal)
     }
 
 
-
 }
 
-class dbRecViewModel(application:Application):AndroidViewModel(application){
-     val readRecipe:LiveData<List<Recipe>>
-    private val repository:RecipeDatabaseRepository
+class dbRecViewModel(application: Application) : AndroidViewModel(application) {
+    val readRecipe: LiveData<List<Recipe>>
+    private val repository: RecipeDatabaseRepository
+
     //checker
     private var _checker = MutableLiveData<Boolean>()
     val checker: LiveData<Boolean>
@@ -75,37 +79,42 @@ class dbRecViewModel(application:Application):AndroidViewModel(application){
 
     init {
         val recipe_dao = Recipe_database.getDatabase(application).RecipeDao()
-        repository =  RecipeDatabaseRepository(recipe_dao)
-            readRecipe = repository.readRecipe
-
+        repository = RecipeDatabaseRepository(recipe_dao)
+        readRecipe = repository.readRecipe
 
 
     }
 
 
-    fun insertRecipe(recipe:Recipe){
-        viewModelScope.launch (Dispatchers.IO){
+    fun insertRecipe(recipe: Recipe) {
+        viewModelScope.launch(Dispatchers.IO + NonCancellable) {
             repository.insertRecipe(recipe)
         }
     }
 
-    fun deleteRecipe(recipe: Recipe){
+    fun deleteRecipe(recipe: Recipe) {
 
-        viewModelScope.launch (Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO) {
             repository.deleteRecipe(recipe)
         }
     }
-    fun deleteALlRecipe(){
-        viewModelScope.launch (Dispatchers.IO){
+
+    fun deleteALlRecipe() {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.deleteAllReipes()
         }
     }
 
-    fun checkcer():Boolean{
+    fun checkcer(): Boolean {
 
-       _checker.value = true
+        _checker.value = true
 
         return _checker.value!!
+    }
+
+    fun isChecked(url: String): Cursor {
+        return repository.selectIsChecked(url)
+
     }
 
 }

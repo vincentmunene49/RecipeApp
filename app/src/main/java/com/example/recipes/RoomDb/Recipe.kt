@@ -10,9 +10,10 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity(tableName = "recipe_table")
 data class Recipe(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    @PrimaryKey
+    val url:String,
     val lable: String,
     val image: Bitmap,
+    var isChecked:Boolean,
     val ingredients: List<Ingredient>
 ):Parcelable

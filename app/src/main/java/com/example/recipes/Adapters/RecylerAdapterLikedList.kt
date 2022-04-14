@@ -47,9 +47,12 @@ class RecylerAdapterLikedList(
                 }
             }
 
+
         }
 
+
     }
+
 
     //set the list
     fun setData(recipe:List<Recipe>){

@@ -34,7 +34,7 @@ class Offline_Recipe_Fragment : Fragment() {
         _dViewModel = ViewModelProvider(this).get(dbRecViewModel::class.java)
         val ingredients = args.recipe.ingredients.toTypedArray()
         val image = args.recipe.image
-        val label = args.recipe.lable
+        //val label = args.recipe.lable
 
         binding.apply {
             Glide.with(this@Offline_Recipe_Fragment).load(image).into(foodImage)

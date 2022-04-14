@@ -1,5 +1,6 @@
 package com.example.recipes.RoomDb
 
+import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
@@ -15,8 +16,11 @@ interface RecipeDao {
     @Query("DELETE FROM recipe_table")
     suspend fun deleteAllRecipes()
     //select
-    @Query("SELECT * FROM recipe_table ORDER BY id ASC")
+    @Query("SELECT * FROM recipe_table")
     fun readRecipe():LiveData<List<Recipe>>
+    //select boolean value
+    @Query("SELECT isChecked FROM recipe_table WHERE url = :url")
+    fun select_is_checked(url:String):Cursor
 
 
 

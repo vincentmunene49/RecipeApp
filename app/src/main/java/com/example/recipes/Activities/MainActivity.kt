@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         //set default Theme
-
+        setTheme(R.style.Theme_Recipes)
         setContentView(binding.root)
 
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHost

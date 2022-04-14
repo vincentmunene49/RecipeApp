@@ -1,5 +1,6 @@
 package com.example.recipes.ViewModel
 
+import android.database.Cursor
 import androidx.lifecycle.LiveData
 import com.example.recipes.RoomDb.Recipe
 import com.example.recipes.RoomDb.RecipeDao
@@ -16,5 +17,6 @@ class RecipeDatabaseRepository(val db_dao:RecipeDao){
 
     suspend fun deleteRecipe(recipe: Recipe) = db_dao.deleteRecipe(recipe)
     suspend fun deleteAllReipes() = db_dao.deleteAllRecipes()
+     fun selectIsChecked(url:String):Cursor = db_dao.select_is_checked(url)
 
 }

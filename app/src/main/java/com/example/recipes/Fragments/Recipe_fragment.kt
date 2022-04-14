@@ -1,6 +1,7 @@
 package com.example.recipes.Fragments
 
 import android.content.res.ColorStateList
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
@@ -89,12 +90,25 @@ class recipe_fragment : Fragment() {
                 binding.liked.imageTintList = ColorStateList.valueOf(Color.parseColor("red"))
                 lifecycleScope.launch {
                     recipe = com.example.recipes.RoomDb.Recipe(
-                        0,
+                        viewClicked.recipe.image,
                         viewClicked.recipe.label,
                         getBitmap(viewClicked.recipe.image),
+                        true,
                         viewClicked.recipe.ingredients
                     )
                     _dViewModel.insertRecipe(recipe)
+                    //checking for inserted value of boolean
+//                    var row:Cursor = _dViewModel.isChecked(viewClicked.recipe.url)
+//                    while (row.moveToNext()) run {
+//                        val index: Int = row.getColumnIndexOrThrow(viewClicked.recipe.url)
+//                        val isChecked = row.getInt(index)
+//
+//                        if(isChecked ==1){
+//
+//                        }
+//                    }
+
+
 
                 }
                 Toast.makeText(context, "Recipe added to favourites", Toast.LENGTH_SHORT).show()
