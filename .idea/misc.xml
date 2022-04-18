@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/layout/ingredients.xml" value="0.17617753623188406" />
         <entry key="app/src/main/res/layout/liked_list_items.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/layout/list_items.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/layout/no_internet_fragment.xml" value="0.16" />
         <entry key="app/src/main/res/layout/offline_recipe_fragment.xml" value="0.15904232578024796" />
         <entry key="app/src/main/res/layout/recipe_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/web_view_fragment.xml" value="0.15904232578024796" />

@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,6 @@ import kotlinx.coroutines.launch
 import kotlin.properties.Delegates
 
 
-
 class recipe_fragment : Fragment() {
     private val args: recipe_fragmentArgs by navArgs()//for passing arguments safely
     var _binding: RecipeFragmentBinding? = null
@@ -40,6 +40,7 @@ class recipe_fragment : Fragment() {
 
     //Recipe
     private lateinit var recipe: Recipe
+
     //to check
     private var check by Delegates.notNull<Boolean>()
 
@@ -74,6 +75,18 @@ class recipe_fragment : Fragment() {
 
         var viewClicked = ObjectHit.hit[recipe_poition]
 
+        //check if data exist
+
+//        _dViewModel.rowExists(viewClicked.recipe.url).observe(viewLifecycleOwner,{
+//            if(it>0){
+//                Log.d("vin","${_dViewModel.rowExists(viewClicked.recipe.url)}" + "exits")
+//            }else{
+//                Log.d("vin","${_dViewModel.rowExists(viewClicked.recipe.url)}"+ "do not exits")
+//
+//            }
+//        })
+
+
         _dViewModel.checker.observe(viewLifecycleOwner, {
             if (it) {
                 binding.liked.imageTintList = ColorStateList.valueOf(Color.parseColor("red"))
@@ -93,22 +106,9 @@ class recipe_fragment : Fragment() {
                         viewClicked.recipe.image,
                         viewClicked.recipe.label,
                         getBitmap(viewClicked.recipe.image),
-                        true,
                         viewClicked.recipe.ingredients
                     )
                     _dViewModel.insertRecipe(recipe)
-                    //checking for inserted value of boolean
-//                    var row:Cursor = _dViewModel.isChecked(viewClicked.recipe.url)
-//                    while (row.moveToNext()) run {
-//                        val index: Int = row.getColumnIndexOrThrow(viewClicked.recipe.url)
-//                        val isChecked = row.getInt(index)
-//
-//                        if(isChecked ==1){
-//
-//                        }
-//                    }
-
-
 
                 }
                 Toast.makeText(context, "Recipe added to favourites", Toast.LENGTH_SHORT).show()
@@ -116,8 +116,10 @@ class recipe_fragment : Fragment() {
 
         }
 
-        binding.viewRecipe.setOnClickListener{
-           val source =  args.source
+
+
+        binding.viewRecipe.setOnClickListener {
+            val source = args.source
             val action = recipe_fragmentDirections.actionRecipeFragmentToWebViewFragment(source)
             findNavController().navigate(action)
         }
@@ -126,7 +128,7 @@ class recipe_fragment : Fragment() {
     }
 
     //convert image to bitmap
-   private suspend fun getBitmap(imageUrl: String): Bitmap {
+    private suspend fun getBitmap(imageUrl: String): Bitmap {
         val loading = ImageLoader(requireContext())
         val request = ImageRequest.Builder(requireContext())
             .data(imageUrl)
@@ -137,10 +139,6 @@ class recipe_fragment : Fragment() {
         return (result as BitmapDrawable).bitmap
 
     }
-
-
-
-
 
 
 }

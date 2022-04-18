@@ -14,6 +14,5 @@ data class Recipe(
     val url:String,
     val lable: String,
     val image: Bitmap,
-    var isChecked:Boolean,
     val ingredients: List<Ingredient>
 ):Parcelable

@@ -5,8 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.add
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -15,6 +19,7 @@ import com.example.recipes.Interfaces.viewClickedListener
 import com.example.recipes.Pojo.Hit
 import com.example.recipes.Pojo.ObjectHit
 import com.example.recipes.Pojo.ScreenStates
+import com.example.recipes.R
 import com.example.recipes.ViewModel.RecViewModel
 import com.example.recipes.ViewModel.RecViewModelFactory
 import com.example.recipes.ViewModel.RetRepository
@@ -65,6 +70,20 @@ class fragment_home : Fragment(), viewClickedListener {
                 binding.progressBar.visibility = View.VISIBLE
             is ScreenStates.Success -> {
                 binding.progressBar.visibility = View.GONE
+                //remove error fragment
+                val fragment = childFragmentManager.findFragmentById(R.id.no_internet_fragment)
+                if (fragment != null) {
+                    childFragmentManager.commit {
+                        setReorderingAllowed(true)
+                        remove(fragment)
+                     //   detach(fragment)
+                        //hide(fragment)
+
+
+                    }
+                }
+
+
                 if (state.data != null) {
                     ObjectHit.hit = state.data as ArrayList<Hit>
                     val adapter = RecyclerAdapter(state.data, this@fragment_home)
@@ -98,8 +117,25 @@ class fragment_home : Fragment(), viewClickedListener {
             }
             is ScreenStates.Error -> {
                 binding.progressBar.visibility = View.GONE
-                val view = binding.progressBar.rootView
-                Snackbar.make(view, state.message!!, Snackbar.LENGTH_LONG).show()
+
+
+                //offline fragment manager
+                val fragment = childFragmentManager.findFragmentById(R.id.no_internet_fragment)
+                if (fragment != null) {
+                    //do nothing
+                } else {
+                    childFragmentManager.commit {
+                        setReorderingAllowed(true)
+
+                        add<NoInternetConnection>(R.id.no_internet_fragment)
+                    }
+                }
+
+
+//                val view = binding.progressBar.rootView
+//                Snackbar.make(view, state.message!!, Snackbar.LENGTH_LONG).show()
+
+
             }
         }
     }

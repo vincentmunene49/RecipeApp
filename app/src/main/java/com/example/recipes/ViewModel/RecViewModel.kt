@@ -15,6 +15,7 @@ import com.example.recipes.util.TYPE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,6 +70,7 @@ class RecViewModel(
 
 class dbRecViewModel(application: Application) : AndroidViewModel(application) {
     val readRecipe: LiveData<List<Recipe>>
+
     private val repository: RecipeDatabaseRepository
 
     //checker
@@ -111,11 +113,11 @@ class dbRecViewModel(application: Application) : AndroidViewModel(application) {
 
         return _checker.value!!
     }
-
-    fun isChecked(url: String): Cursor {
-        return repository.selectIsChecked(url)
-
+    fun rowExists(url:String):LiveData<Int> {
+      return   repository.rowExixts(url)
     }
+
+
 
 }
 
